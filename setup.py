@@ -10,7 +10,7 @@ setup(
     long_description_content_type='text/markdown',
     author="Pena",
     author_email="penadoxo@gmail.com",
-    url='https://github.com/seu_usuario/animotion',  # Substitua pelo URL do repositório do projeto
+    url='https://github.com/peninha/animotion',
     packages=find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -23,9 +23,7 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
     python_requires='>=3.7',
-    install_requires=[
-        # Dependências do projeto, como RPi.GPIO, Adafruit Blinka, etc.
-    ],
+    install_requires=[],  # Sem dependências externas
     keywords='animation hardware servo LED keyframe',
     license='MIT',
 )
