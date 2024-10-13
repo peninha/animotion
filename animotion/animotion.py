@@ -75,6 +75,7 @@ class Animotion:
                 if elapsed > frame_duration:
                     break
                 if elapsed + t0 > self.duration:
+                    time.sleep(self.duration - (elapsed + t0))  # Espera até o final da duração
                     return
                 
                 t = min(1, max(0, elapsed / frame_duration))  # Garantir t entre 0 e 1
@@ -85,6 +86,10 @@ class Animotion:
         # Garantir que o último valor seja definido, se dentro da duração
         if self.keyframes[-1][0] <= self.duration:
             self.update_function(self.keyframes[-1][1], *self.args, **self.kwargs)
+
+        # Continuar até o final da duração se necessário
+        if time.time() - start_time < self.duration:
+            time.sleep(self.duration - (time.time() - start_time))
 
     def run_in_thread(self):
         """
