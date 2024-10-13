@@ -3,6 +3,14 @@ import time
 import threading
 from typing import List, Tuple, Callable
 
+# TODO: Implementar suporte a diferentes tipos de interpoladores fornecidos dinamicamente
+# TODO: Permitir interpolar mais de um valor por vez (listas, array, coordenadas)
+# TODO: Permitir mudar o interpolador para momentos pontos diferentes, ou implementar um
+#       jeito de unir uma animacao na outra de maneira lisa, e cada uma podendo usar um interpolador
+# TODO: Fazer arquivo com exemplos
+# TODO: Fazer testes unitários (o que acontece se a duracao não bate com os key-frames? e se o primeiro
+#       key-frame não for 0?)
+
 class Animotion:
     def __init__(self, duration: float, update_function: Callable, interpolator: str = "linear", *args, **kwargs):
         """
@@ -50,6 +58,10 @@ class Animotion:
             print("É necessário ter pelo menos dois keyframes para uma animação.")
             return
 
+        # Garantir que exista um keyframe no tempo 0
+        if self.keyframes[0][0] != 0:
+            self.keyframes.insert(0, (0, self.keyframes[0][1]))
+
         start_time = time.time()
 
         # Percorrer os keyframes
@@ -62,14 +74,17 @@ class Animotion:
                 elapsed = time.time() - (start_time + t0)
                 if elapsed > frame_duration:
                     break
+                if elapsed + t0 > self.duration:
+                    return
                 
                 t = min(1, max(0, elapsed / frame_duration))  # Garantir t entre 0 e 1
                 interpolated_value = self.interpolator(v0, v1, t)
                 self.update_function(interpolated_value, *self.args, **self.kwargs)
                 time.sleep(0.05)  # Pequeno delay para suavizar a animação
 
-        # Garantir que o último valor seja definido
-        self.update_function(self.keyframes[-1][1], *self.args, **self.kwargs)
+        # Garantir que o último valor seja definido, se dentro da duração
+        if self.keyframes[-1][0] <= self.duration:
+            self.update_function(self.keyframes[-1][1], *self.args, **self.kwargs)
 
     def run_in_thread(self):
         """
