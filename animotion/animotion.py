@@ -4,7 +4,7 @@ import threading
 from typing import List, Tuple, Callable
 
 class Animotion:
-    def __init__(self, duration: float, update_function: Callable[[float], None], interpolator: str = "linear"):
+    def __init__(self, duration: float, update_function: Callable, interpolator: str = "linear", *args, **kwargs):
         """
         Classe para animar valores com base em keyframes.
 
@@ -16,6 +16,8 @@ class Animotion:
         self.update_function = update_function
         self.keyframes: List[Tuple[float, float]] = []  # Lista de keyframes (tempo, valor)
         self.interpolator = self.get_interpolator(interpolator)
+        self.args = args
+        self.kwargs = kwargs
 
     def get_interpolator(self, interpolator_name: str) -> Callable[[float, float, float], float]:
         """
@@ -63,11 +65,11 @@ class Animotion:
                 
                 t = min(1, max(0, elapsed / frame_duration))  # Garantir t entre 0 e 1
                 interpolated_value = self.interpolator(v0, v1, t)
-                self.update_function(interpolated_value)
+                self.update_function(interpolated_value, *self.args, **self.kwargs)
                 time.sleep(0.05)  # Pequeno delay para suavizar a animação
 
         # Garantir que o último valor seja definido
-        self.update_function(self.keyframes[-1][1])
+        self.update_function(self.keyframes[-1][1], *self.args, **self.kwargs)
 
     def run_in_thread(self):
         """
