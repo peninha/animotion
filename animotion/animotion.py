@@ -2,7 +2,7 @@
 import time
 import threading
 from typing import List, Tuple, Callable
-from animotion.interpolators import linear_interpolation, ease_in, ease_out, ease_in_out
+from .interpolators import linear_interpolation, ease_in, ease_out, ease_in_out
 
 class Animotion:
     def __init__(self, duration: float, update_function: Callable[[float], None], interpolator: Callable = linear_interpolation):
