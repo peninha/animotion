@@ -1,7 +1,5 @@
 # Exemplo de uso da biblioteca Animotion
 from animotion import Animotion
-import time
-import matplotlib.pyplot as plt
 
 # Função de atualização que será chamada durante a animação
 def update_function(mao, olho, sobran_dir, sobran_esq, boca, emocao):

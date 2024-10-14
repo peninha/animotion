@@ -7,17 +7,18 @@ def update_function(x, y, emotion):
 
 # Criar uma instância da classe Animotion
 animacao = Animotion(
-    duration=5,
     update_function=update_function,
     interpolator="ease_in_out",
     mode="visualize",
     delta_t=0.1,
-    value_names=["Posição X", "Posição Y", "Emoção"]
+    value_names=["Posição X", "Posição Y", "Emoção"],
+    start_time=1
 )
 
 # Adicionar keyframes para a animação
-animacao.add_keyframe(0, ((0, 0), "neutro"))
-animacao.add_keyframe(5, ((100, 50), "feliz"))
+animacao.add_keyframe(0, (0, 0, "neutro"))
+animacao.add_keyframe(2, (100, 50, "feliz"))
+animacao.add_keyframe(4, (200, 100, "triste"))
 
 # Executar a animação
 animacao.run()

@@ -5,12 +5,9 @@ from typing import List, Tuple, Callable, Union
 import matplotlib.pyplot as plt
 
 # TODO: Implementar suporte a diferentes tipos de interpoladores fornecidos dinamicamente
-# TODO: Permitir interpolar mais de um valor por vez (listas, array, coordenadas)
-# TODO: Permitir mudar o interpolador para momentos pontos diferentes, ou implementar um
-#       jeito de unir uma animacao na outra de maneira lisa, e cada uma podendo usar um interpolador
+# TODO: Permitir mudar o interpolador para pontos diferentes
 # TODO: Fazer arquivo com exemplos
-# TODO: Fazer testes unitários (o que acontece se a duracao não bate com os key-frames? e se o primeiro
-#       key-frame não for 0?)
+# TODO: Fazer testes unitários
 
 class Animotion:
     def __init__(self, duration: float, update_function: Callable, interpolator: str = "linear", mode: str = "deploy", delta_t: float = 0.05, value_names: List[str] = None, *args, **kwargs):
@@ -60,6 +57,14 @@ class Animotion:
             values = tuple(values)  # Garantir que seja uma tupla para consistência
         self.keyframes.append((time_point, values))
         self.keyframes.sort()  # Ordenar os keyframes pelo tempo
+
+    def add_keyframes(self, keyframes: List[Tuple[float, Union[float, str, Tuple[Union[float, str], ...]]]]):
+        """
+        Adiciona múltiplos keyframes à animação.
+        :param keyframes: Lista de keyframes, onde cada keyframe é uma tupla (tempo, valores).
+        """
+        for time_point, values in keyframes:
+            self.add_keyframe(time_point, values)
 
     def run(self):
         """
@@ -188,24 +193,22 @@ class Animotion:
         :return: Valor interpolado.
         """
         return start_value + (end_value - start_value) * (t ** 2)
-    
+
     @staticmethod
     def ease_out(start_value: float, end_value: float, t: float) -> float:
         """
         Interpolação ease-out, que começa rápida e desacelera.
-    
         :param start_value: Valor inicial.
         :param end_value: Valor final.
         :param t: Proporção entre 0 e 1.
         :return: Valor interpolado.
         """
         return start_value + (end_value - start_value) * (1 - (1 - t) ** 2)
-    
+
     @staticmethod
     def ease_in_out(start_value: float, end_value: float, t: float) -> float:
         """
         Interpolação ease-in-out, que começa lenta, acelera e depois desacelera.
-    
         :param start_value: Valor inicial.
         :param end_value: Valor final.
         :param t: Proporção entre 0 e 1.
