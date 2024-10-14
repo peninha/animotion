@@ -21,7 +21,7 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
 ]
 dependencies = [
-
+    "matplotlib"
 ]
 requires-python = ">=3.7"
 

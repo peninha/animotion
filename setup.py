@@ -24,8 +24,8 @@ setup(
     ],
     python_requires='>=3.7',
     install_requires=[
-
-        ],
+        'matplotlib',
+    ],
     keywords='animation hardware servo LED keyframe',
     license='MIT',
 )
