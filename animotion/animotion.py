@@ -2,7 +2,6 @@
 import time
 import threading
 from typing import List, Tuple, Callable, Union
-import numpy as np
 import matplotlib.pyplot as plt
 
 # TODO: Implementar suporte a diferentes tipos de interpoladores fornecidos dinamicamente

@@ -24,7 +24,7 @@ setup(
     ],
     python_requires='>=3.7',
     install_requires=[
-            "numpy>=1.20"
+
         ],
     keywords='animation hardware servo LED keyframe',
     license='MIT',

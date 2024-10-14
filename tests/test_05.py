@@ -1,5 +1,4 @@
 from animotion import Animotion
-import numpy as np
 import time
 
 # Função de atualização que será chamada durante a animação
