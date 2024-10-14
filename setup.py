@@ -23,7 +23,9 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
     python_requires='>=3.7',
-    install_requires=[],  # Sem dependências externas
+    install_requires=[
+            "numpy>=1.20"
+        ],
     keywords='animation hardware servo LED keyframe',
     license='MIT',
 )
