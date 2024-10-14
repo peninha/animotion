@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 # TODO: Implementar suporte a diferentes tipos de interpoladores fornecidos dinamicamente
 # TODO: Permitir mudar o interpolador para pontos diferentes
+# TODO: Implementar o bake animation (pre-renderizar a animacao)
 # TODO: Fazer arquivo com exemplos
 # TODO: Fazer testes unitários
 
