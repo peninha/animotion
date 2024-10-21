@@ -151,7 +151,7 @@ class Animotion:
         """
         animation_thread = threading.Thread(target=self.run)
         animation_thread.start()
-        return animotion_thread
+        return animation_thread
 
     def plot_visualization(self):
         """
