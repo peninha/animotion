@@ -4,8 +4,11 @@ import threading
 from typing import List, Tuple, Callable, Union
 import matplotlib.pyplot as plt
 
+# TODO: Bug - se duracao é mais curta que o último key-frame dá pau
 # TODO: Implementar suporte a diferentes tipos de interpoladores fornecidos dinamicamente
 # TODO: Permitir mudar o interpolador para pontos diferentes
+# TODO: Modo visualize não demorar o tempo de animação para mostrar o gráfico
+# TODO: Permitir interpolar num array e retornar um array para a update_function
 # TODO: Implementar o bake animation (pre-renderizar a animacao)
 # TODO: Fazer arquivo com exemplos
 # TODO: Fazer testes unitários
