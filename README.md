@@ -6,5 +6,4 @@ Uma biblioteca para criar animações baseadas em keyframe para dispositivos fí
 
 ## Instalação
 
-```bash
-pip install -e .
+pip install git+https://github.com/peninha/animotion.git#egg=animotion
