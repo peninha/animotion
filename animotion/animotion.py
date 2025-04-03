@@ -90,7 +90,7 @@ class Animotion:
             while True:
                 # Verificar se o evento de parada foi sinalizado
                 if self.stop_event and self.stop_event.is_set():
-                    print("Animação interrompida.")
+                    #print("Animação interrompida.")
                     return
 
                 current_time = time.time()
@@ -127,7 +127,7 @@ class Animotion:
         # Se ainda não atingiu a duração, aguardar ou atualizar até o fim
         while True:
             if self.stop_event and self.stop_event.is_set():
-                print("Animação interrompida.")
+                #print("Animação interrompida.")
                 return
 
             total_elapsed = time.time() - start_time
